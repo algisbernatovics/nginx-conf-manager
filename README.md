@@ -1,29 +1,62 @@
-# nginx-conf-manager
+# Nginx Configuration Manager Script
 
-Running the Script:
+This script provides a simple command-line interface (CLI) for managing Nginx server configurations in the directories `/etc/nginx/sites-available` (available configurations) and `/etc/nginx/sites-enabled` (enabled configurations).
 
-Execute the script in the terminal:
-`sh nginx-conf-manager.sh`
-Navigating the Menu:
+## Features
 
-The script first lists the enabled and disabled configurations.
-The user is prompted to select an option:
-Enter the number corresponding to a configuration to enable/disable/edit/remove it.
-Enter a to add a new configuration.
-Enter 0 to exit.
-Actions on Configurations:
+- List all available and enabled Nginx configurations.
+- Enable, disable, edit, and remove Nginx configurations.
+- Add new Nginx configurations easily through the CLI.
 
-Enable a Configuration:
-If a disabled configuration is selected, it can be enabled.
-Disable a Configuration:
-If an enabled configuration is selected, it can be disabled.
-Edit a Configuration:
-Any configuration can be edited in the text editor.
-Remove a Configuration:
-Disabled configurations can be removed.
-Add a New Configuration:
-Prompts for a new configuration name and creates a template file.
-Dependencies
-Nginx: Ensure Nginx is installed and the configuration directories exist.
-gedit: The script uses gedit to edit configuration files.
-System Permissions: The script requires sudo permissions to modify Nginx configurations and restart the service.
+## Requirements
+
+- Bash (Bourne Again Shell)
+- Nginx installed and configured
+- Sudo privileges to manage Nginx configurations
+
+## Features
+
+  - Manage Nginx configurations.
+  - Enable or disable configurations.
+  - Edit or remove existing configurations.
+  - Add new configurations.
+  - Automatically restart Nginx after enabling configuration.
+
+## Requirements 
+
+  - Nginx installed on your system.
+  - The script assumes standard Nginx configuration file naming and directory conventions (sites-available and sites-enabled).
+    
+## Usage
+
+  1. **Clone the repository**:
+     ```bash
+     git clone https://github.com/algisbernatovics/nginx-conf-manager.git
+     ```
+  2. **Make the script executable**:
+     ```bash
+     cd nginx-conf-manager
+     chmod +x nginx-conf-manager.sh
+     ```
+  3. **Run the script**:
+     ```bash
+     ./nginx-conf-manager.sh
+     ```
+  4. **Follow the on-screen prompts**:
+     - Enter the number corresponding to the configuration you want to manage.
+     - Choose to enable, disable, edit, or remove the configuration.
+     - To add a new configuration, select `a` and enter the name of the new configuration file.
+
+- **Example**:
+  ```bash
+  # List configurations
+  ./nginx-conf-manager.sh
+
+  # Enable a configuration
+  Enter the number of the configuration to enable/disable/edit/remove/add (0 to exit, a to add a new configuration): 1
+  Configuration example.com is available. Do you want to enable it (e), edit it (d), or remove it (r)? (e/d/r): e
+
+  # Add a new configuration
+  Enter the number of the configuration to enable/disable/edit/remove/add (0 to exit, a to add a new configuration): a
+  Enter the name of the new configuration file: new_site.conf
+  Created new configuration testsite.com
