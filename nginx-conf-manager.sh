@@ -55,7 +55,7 @@ enable_config() {
 # Function to edit a configuration file
 edit_config() {
     local config=$1
-    sudo gedit "$SITES_AVAILABLE/$config" >/dev/null 2>&1 # Change editor to your preference if needed
+    gedit "$SITES_AVAILABLE/$config"
 }
 
 # Function to remove a disabled configuration
