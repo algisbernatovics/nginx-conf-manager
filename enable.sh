@@ -7,4 +7,5 @@ enable_config() {
     sudo systemctl restart nginx
     echo -e "${GREEN}Enabled configuration $config.${NC}"
     echo -e "${GREEN}Restarted Nginx.${NC}"
+    echo -e "\n"
 }

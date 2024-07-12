@@ -20,5 +20,7 @@ list_configs() {
     done
 
     # Display option to add a new configuration
+    echo -e
     echo -e "${YELLOW}a. Add a new configuration${NC}"
+    echo -e
 }

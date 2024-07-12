@@ -9,4 +9,4 @@ NC='\033[0m' # No Color
 # Constants for paths
 SITES_AVAILABLE="/etc/nginx/sites-available"
 SITES_ENABLED="/etc/nginx/sites-enabled"
-CONFIG_PERMISSIONS=644
+CONFIG_PERMISSIONS=777

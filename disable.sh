@@ -6,4 +6,5 @@ disable_config() {
     sudo rm "$SITES_ENABLED/$config"
     sudo systemctl restart nginx
     echo -e "${YELLOW}Disabled configuration $config.${NC}"
+    echo -e "\n"
 }
