@@ -1,4 +1,3 @@
-# list.sh
 list_configs() {
     # Retrieve list of sites in sites-available and sites-enabled
     enabled_configs=$(ls "$SITES_ENABLED" 2>/dev/null)
@@ -9,15 +8,20 @@ list_configs() {
 
     # Display configurations
     echo -e "${GREEN}=== Enabled and Available Configurations ===${NC}"
-    index=1
-    for config in $all_configs; do
-        if echo "$enabled_configs" | grep -q "\b$config\b"; then
-            echo -e "${GREEN}${index}. $config${NC}"
-        else
-            echo -e "${RED}${index}. $config${NC}"
-        fi
-        index=$((index + 1))
-    done
+    echo -e
+
+    # Convert the list to an array
+    mapfile -t config_array <<< "$all_configs"
+
+    # Check for empty configurations
+    if [ ${#config_array[@]} -eq 0 ]; then
+        echo -e "${YELLOW}No configurations available.${NC}"
+    else
+        # Print the configurations with numbers
+        for i in "${!config_array[@]}"; do
+            printf "%d. %s\n" $((i + 1)) "${config_array[i]}"
+        done | column
+    fi
 
     # Display option to add a new configuration
     echo -e
