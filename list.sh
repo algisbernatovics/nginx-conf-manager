@@ -7,7 +7,7 @@ list_configs() {
     all_configs=$(printf "%s\n%s\n" "$enabled_configs" "$available_configs" | sort -u)
 
     # Display configurations
-    echo -e "${GREEN}=== Enabled and Available Configurations ===${NC}"
+    echo -e "${GREEN}=== Enabled Configurations ===${NC}"
     echo -e
 
     # Convert the list to an array
@@ -17,11 +17,26 @@ list_configs() {
     if [ ${#config_array[@]} -eq 0 ]; then
         echo -e "${YELLOW}No configurations available.${NC}"
     else
-        # Print the configurations with numbers
+        # Print the enabled configurations
         for i in "${!config_array[@]}"; do
-            printf "%d. %s\n" $((i + 1)) "${config_array[i]}"
+            if echo "$enabled_configs" | grep -q "\b${config_array[i]}\b"; then
+                echo "$((i+1)). ${config_array[i]}"
+            fi
         done | column
     fi
+
+    echo -e
+    echo -e "${RED}=== Disabled Available Configurations ===${NC}"
+    echo -e
+
+    # Print the disabled configurations
+    disabled_count=1
+    for i in "${!config_array[@]}"; do
+        if ! echo "$enabled_configs" | grep -q "\b${config_array[i]}\b"; then
+            echo -e "${RED}$((i+1)). ${config_array[i]}${NC}"
+            ((disabled_count++))
+        fi
+    done | column
 
     # Display option to add a new configuration
     echo -e
